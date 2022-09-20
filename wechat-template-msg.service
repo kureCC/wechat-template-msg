@@ -1,0 +1,20 @@
+[Unit]
+# 单元描述
+Description=微信模板消息转发
+
+[Service]
+Type=simple
+# 程序执行的目录
+WorkingDirectory=/xxx/xxx/golang/wechat-template-msg
+# 启动的脚本命令
+ExecStart=/xxx/xxx/golang/wechat-template-msg/wechat-template-msg consumer
+# 重启条件
+Restart=always
+# 几秒后重启
+RestartSec=0
+# 杀死进程关联
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+

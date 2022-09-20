@@ -1,0 +1,26 @@
+gfcli:
+  build:
+    name: "wechat-template-msg"
+    arch: "amd64"
+    system: "linux"
+    path: "./bin"
+
+database:
+  default:
+    link: "mysql:xxx:xxx@tcp(xxx:3306)/db_wechat?charset=utf8mb4"
+  db_wechat:
+    link: "mysql:xxx:xxx@tcp(xxx:3306)/db_wechat?charset=utf8mb4"
+
+logger:
+  path: "./log"
+  level: "all"
+  stdout: true
+
+server:
+  config: "local"
+  port: "18082" #可以访问xxx:18082/debug/pprof 查看具体性能消耗
+  worksNumber: 8 #工作携程池数量 同一时间并行执行的数量
+  consumerNumber: 4 #消费者数量 一台服务进程，多个消费者，同时从mq中取出数据 (配合限流器使用,限流器属于单个消费者)
+
+rabbitmq:
+  dns: "amqp://xxx:xxx@xxx:5672/prod" #建议使用内网ip 甚至本地ip，极大影响mq读写qps
